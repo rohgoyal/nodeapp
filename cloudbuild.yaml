@@ -2,3 +2,12 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/lunchandlearn-224013/github.com/rohgoyal/nodeapp:$COMMIT_SHA', '.']
 images: ['gcr.io/lunchandlearn-224013/github.com/rohgoyal/nodeapp:$COMMIT_SHA']
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+  - 'set'
+  - 'image'
+  - 'deployment/nodeapp'
+  - 'nodeapp=lunchandlearn-224013/github.com/rohgoyal/nodeapp:$COMMIT_SHA'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=australia-southeast1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=node-trial'

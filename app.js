@@ -3,7 +3,7 @@ const app = express()
 
 app.get('/hello', function(req, res){
   var obj = {}
-  obj.version = '1.0'
+  obj.version = '2.0'
   obj.incomingHeaders = req.headers
   res.send(JSON.stringify(obj))
 })
